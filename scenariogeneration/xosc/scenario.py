@@ -113,13 +113,13 @@ class RoadNetwork():
         ----------
             roadfile (str): path to the opendrive file
 
-            scenegraph (str): path to the opensceengraph file (optional)
+            scenegraph (str): path to the openscenegraph file (optional)
 
         Attributes
         ----------
             road_file (str): path to the opendrive file
 
-            scene (str): path to the opensceengraph file 
+            scene_file (str): path to the openscenegraph file 
 
             traffic_signals (list of TrafficSignalController): all traffic signals in the roadnetwork
             
@@ -138,11 +138,11 @@ class RoadNetwork():
         ----------
             roadfile (str): path to the opendrive file
 
-            scenegraph (str): path to the opensceengraph file (optional)
+            scenegraph (str): path to the openscenegraph file (optional)
 
         """
         self.road_file = roadfile
-        self.scene = scenegraph
+        self.scene_file = scenegraph
         self.traffic_signals = []
 
     def add_traffic_signal_controller(self,traffic_signal_controller):
@@ -163,8 +163,8 @@ class RoadNetwork():
         """
         roadnetwork = ET.Element('RoadNetwork')
         ET.SubElement(roadnetwork,'LogicFile',{'filepath': self.road_file})
-        if self.scene:
-            ET.SubElement(roadnetwork,'SceneGraphFile',{'filepath':self.scene})
+        if self.scene_file:
+            ET.SubElement(roadnetwork,'SceneGraphFile',{'filepath':self.scene_file})
         if self.traffic_signals:
             trafsign_element = ET.SubElement(roadnetwork,'TrafficSignals')
             for ts in self.traffic_signals:
